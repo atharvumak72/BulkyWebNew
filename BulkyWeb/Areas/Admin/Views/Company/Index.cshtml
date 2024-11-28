@@ -1,0 +1,46 @@
+﻿@model List<Bulky.Models.Models.Company>
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Company List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-3">
+        <div class="">
+            <div class="row ">
+                <div class="col-12 text-end">
+                    <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">
+                        <i class="bi bi-plus-circle-dotted"></i> Create New Company
+                    </a>
+                </div>
+            </div>
+
+            <br />
+
+
+                <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+                    <thead class="">
+                        <tr>
+                            <th class="font-weight-bold">Name</th>
+                            <th class="font-weight-bold">Address</th>
+                            <th class="font-weight-bold">City</th>
+                            <th class="font-weight-bold">State</th>
+                            <th class="font-weight-bold">Phone Number</th>
+                            <th> </th>
+
+                        </tr>
+                    </thead>
+
+               </table>
+            
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Company.js"></script>
+}
+

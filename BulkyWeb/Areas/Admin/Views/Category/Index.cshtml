@@ -1,0 +1,64 @@
+﻿@model List<Category>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Category List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-3">
+        <div class="">
+            <div class="row ">
+                <div class="col-12 text-end">
+                    <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                        <i class="bi bi-plus-circle-dotted"></i> Create New Category
+                    </a>
+                </div>
+            </div>
+
+            <br />
+
+            @* <partial name="_NotificationPartialView"/> *@
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info">
+                    No categories available. Click the <strong>Create New Category</strong> button above to add one.
+                </div>
+            }
+            else
+            {
+                <table class="table table-bordered table-striped">
+                    <thead class="">
+                        <tr>
+                            <th class="font-weight-bold">Category Name</th>
+                            <th class="font-weight-bold">Display Order</th>
+                            <th class="font-weight-bold text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+                        {
+                            <tr>
+                                <td>@obj.Name</td>
+                                <td>@obj.DisplayOrder</td>
+                                <td class="text-center">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+
+    </div>
+</div>
+
