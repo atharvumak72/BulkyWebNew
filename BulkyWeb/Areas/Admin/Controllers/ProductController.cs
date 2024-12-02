@@ -159,7 +159,23 @@ namespace BulkyWeb.Areas.Admin.Controllers
             if (productToBeDeleted == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
-            } 
+            }
+
+            //To remove image
+
+            string productPath = @"images\products\product-" + Id;
+            string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
+            if (Directory.Exists(finalPath))
+            {
+                string[] filePaths = Directory.GetFiles(finalPath);
+                foreach (string filePath in filePaths) { 
+                    System.IO.File.Delete(filePath);
+                }
+
+               // Directory.Delete(finalPath); //Not allowing to delete
+            }
+
+
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Product delete Successful" });
